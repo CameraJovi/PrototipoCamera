@@ -1,0 +1,659 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cor-principal: #7B4FE0;
+  --cor-clara: #9B6FFF;
+  --brilho-principal: rgba(123, 79, 224, 0.35);
+  --fundo-visor: #DDD5F0;
+  --grade-visor: rgba(150, 120, 200, 0.25);
+  --cor-leitura: #9B6FFF;
+  --brilho-leitura: rgba(155, 111, 255, 0.5);
+  --branco: #ffffff;
+  --escuro: #1a1a1a;
+  --icone-cinza: #2c2c2c;
+  --fundo-icone: rgba(255, 255, 255, 0.92);
+  --fundo-inferior: #1e1e1e;
+  --fonte: 'Inter', sans-serif;
+}
+
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family: var(--fonte);
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/*Container do Celular*/
+.container-celular {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.tela-celular {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--escuro);
+  position: relative;
+}
+
+/* Desktop: mostra a borda decorativa simulando um celular */
+@media (min-width: 500px) {
+  body {
+    background: #111;
+  }
+
+  .container-celular {
+    width: 390px;
+    height: 844px;
+    flex-shrink: 0;
+  }
+
+  .tela-celular {
+    border-radius: 48px;
+    box-shadow:
+      0 0 0 10px #2a2a2a,
+      0 0 0 12px #444,
+      0 30px 80px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/*Barra de Status */
+.barra-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px 4px;
+  background: var(--fundo-inferior);
+  color: var(--branco);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.icones-status {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.icone-status {
+  width: 16px;
+  height: 16px;
+  color: var(--branco);
+}
+
+/* ── Barra Superior*/
+.barra-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px 10px;
+  background: var(--fundo-inferior);
+  flex-shrink: 0;
+  position: relative;
+  /* âncora para o menu suspenso */
+}
+
+.btn-icone {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: none;
+  background: var(--fundo-icone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-icone svg {
+  width: 22px;
+  height: 22px;
+  color: var(--icone-cinza);
+}
+
+.btn-icone:active {
+  transform: scale(0.93);
+  background: #e0d8f8;
+}
+
+/*Menu de Configurações*/
+.menu-configuracoes {
+  position: absolute;
+  top: calc(100% + 6px);
+  /* logo abaixo da barra do topo */
+  right: 16px;
+  background: rgba(248, 250, 252, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  padding: 10px 14px;
+  min-width: 190px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+
+  /* Estado oculto */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px) scale(0.97);
+  transform-origin: top right;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu-configuracoes.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.linha-config {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.rotulo-config {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  /* Slate cinza */
+  text-transform: uppercase;
+  white-space: nowrap;
+  min-width: 64px;
+}
+
+.opcoes-config {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.opcao-config {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--fonte);
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+}
+
+/* Bolinha azul para a opção ativa */
+.opcao-config.active {
+  color: #222;
+  font-weight: 700;
+}
+
+.opcao-config.active::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cor-principal);
+  flex-shrink: 0;
+}
+
+.opcao-config:active {
+  background: rgba(123, 79, 224, 0.1);
+}
+
+.divisor-config {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 4px 0;
+}
+
+/*Visor da Câmera */
+.visor-camera {
+  flex: 1;
+  background: var(--fundo-visor);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Grade overlay */
+.sobreposicao-grade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.linha-grade {
+  position: absolute;
+  background: var(--grade-visor);
+}
+
+.grade-v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.grade-h {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+/* Quadro de Detecção (Scanner de Documento) */
+.quadro-detecao {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  z-index: 10;
+}
+
+
+.canto {
+  position: absolute;
+  width: 22px;
+  /* Maior para parecer mais um scanner de documento */
+  height: 22px;
+  border-color: var(--cor-leitura);
+  /* Verde scanner */
+  border-style: solid;
+  border-radius: 4px;
+}
+
+.canto-se {
+  top: 0;
+  left: 0;
+  border-width: 3px 0 0 3px;
+  border-top-left-radius: 6px;
+}
+
+.canto-sd {
+  top: 0;
+  right: 0;
+  border-width: 3px 3px 0 0;
+  border-top-right-radius: 6px;
+}
+
+.canto-ie {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 3px 3px;
+  border-bottom-left-radius: 6px;
+}
+
+.canto-id {
+  bottom: 0;
+  right: 0;
+  border-width: 0 3px 3px 0;
+  border-bottom-right-radius: 6px;
+}
+
+/* Seletor de Zoom */
+.seletor-zoom {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  padding: 4px 8px;
+  z-index: 20;
+}
+
+.btn-zoom {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--fonte);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.zoom-x {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.btn-zoom.zoom-ativo {
+  background: var(--cor-principal);
+  color: var(--branco);
+  font-weight: 700;
+}
+
+.btn-zoom:active {
+  transform: scale(0.9);
+}
+
+/*Barra Inferior*/
+.barra-inferior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px 10px;
+  background: var(--fundo-inferior);
+  flex-shrink: 0;
+}
+
+/* Miniatura da Galeria */
+.miniatura-preview {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  border: 2px solid var(--cor-principal);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, transform 0.15s;
+  box-shadow: 0 0 12px var(--brilho-principal);
+}
+
+.miniatura-interna {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cor-principal);
+}
+
+.miniatura-interna svg {
+  width: 26px;
+  height: 26px;
+  color: #fff;
+}
+
+.miniatura-contador {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cor-principal);
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.miniatura-preview:active {
+  transform: scale(0.93);
+}
+
+/* Botão de Capturar (Shutter) */
+.btn-captura {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s, border-color 0.2s;
+  padding: 0;
+}
+
+.captura-interna {
+  display: block;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--branco);
+  transition: transform 0.1s, background-color 0.15s;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.btn-captura:active .captura-interna {
+  transform: scale(0.88);
+  background: #ddd;
+}
+
+.btn-captura:active {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Controles da Direita (Girar Câmera) */
+.controles-direita {
+  width: 52px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-girar-camera {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.35s ease;
+}
+
+.btn-girar-camera svg {
+  width: 22px;
+  height: 22px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-girar-camera:active {
+  transform: rotate(180deg);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/*Barra de Rótulos de Modo*/
+.barra-modos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 28px 20px;
+  background: var(--fundo-inferior);
+  flex-shrink: 0;
+}
+
+/* Pílula do Seletor de Modo */
+.segmento-modos {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 3px;
+}
+
+.botao-modo {
+  padding: 7px 22px;
+  border-radius: 999px;
+  border: none;
+  font-family: var(--fonte);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.25s, box-shadow 0.2s;
+}
+
+.botao-modo.active {
+  background: var(--cor-principal);
+  color: var(--branco);
+  font-weight: 600;
+  box-shadow: 0 2px 8px var(--brilho-principal);
+}
+
+/*Animação do Flash (Captura)*/
+@keyframes pisca-captura {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.visor-camera.flash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  animation: pisca-captura 0.5s ease-out forwards;
+}
+
+/*Animação de Mudança de Zoom*/
+@keyframes escala-zoom {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/*Área Segura (Notch/Indicador de Início no iOS/Android)*/
+.barra-status {
+  padding-top: max(14px, env(safe-area-inset-top));
+}
+
+.barra-modos {
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+
+/*Alertas Customizados*/
+.alerta-jovi {
+  position: absolute;
+  top: 108px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: var(--cor-principal);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  animation: alerta-entrar 0.3s ease-out forwards;
+}
+
+@keyframes alerta-entrar {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.alerta-jovi.saindo {
+  animation: alerta-sair 0.3s ease-in forwards;
+}
+
+@keyframes alerta-sair {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+}
+
+.alerta-sucesso,
+.alerta-info {
+  /* Override to keep it solid purple */
+  background: var(--cor-principal);
+  border: none;
+}
+
+.alerta-icone,
+.alerta-fechar {
+  display: none !important;
+}
+
+.alerta-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.alerta-titulo {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--branco);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.alerta-msg {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+}
