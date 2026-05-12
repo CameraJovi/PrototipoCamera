@@ -183,12 +183,24 @@ btnGirar.addEventListener('click', function () {
 
 //Seletor de Modo (Foto / Estudante)
 let botoesDeModo = document.querySelectorAll('.botao-modo');
+let modoAtual = 'foto';
+
 for (let i = 0; i < botoesDeModo.length; i++) {
   botoesDeModo[i].addEventListener('click', function () {
+    let modo = botoesDeModo[i].dataset.mode;
+    if (modo === modoAtual) return;
+
     for (let j = 0; j < botoesDeModo.length; j++) {
       botoesDeModo[j].classList.remove('active');
     }
     botoesDeModo[i].classList.add('active');
+    modoAtual = modo;
+
+    if (modo === 'estudante') {
+      visorCamera.classList.add('modo-estudante');
+    } else {
+      visorCamera.classList.remove('modo-estudante');
+    }
   });
 }
 
