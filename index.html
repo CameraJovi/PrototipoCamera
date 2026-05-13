@@ -84,6 +84,7 @@
           <div class="canto canto-sd"></div>
           <div class="canto canto-ie"></div>
           <div class="canto canto-id"></div>
+          <div class="linha-scan"></div>
         </div>
 
         <div class="seletor-zoom" id="seletor-zoom">
@@ -128,6 +129,13 @@
           </button>
         </div>
 
+        <button class="btn-voltar-scan" id="btn-voltar-scan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+          </svg>
+          Voltar
+        </button>
+
       </section>
 
       <footer class="barra-inferior">
@@ -161,6 +169,108 @@
           <button class="botao-modo" id="mode-estudante" data-mode="estudante">Estudante</button>
         </div>
       </nav>
+
+      <!-- Tela de Resultado do Scan -->
+      <div class="tela-resultado-scan" id="tela-resultado-scan">
+        <header class="header-resultado">
+          <button class="btn-texto-resultado" id="btn-cancelar-resultado">Cancelar</button>
+          <span class="titulo-resultado">Scan</span>
+          <button class="btn-texto-resultado" id="btn-salvar-resultado">Salvar</button>
+        </header>
+
+        <div class="preview-documento">
+          <div class="linha-texto-fake" style="width: 80%;"></div>
+          <div class="linha-texto-fake" style="width: 90%;"></div>
+          <div class="linha-texto-fake" style="width: 85%;"></div>
+          <div class="linha-texto-fake" style="width: 70%;"></div>
+          <div class="linha-texto-fake" style="width: 85%;"></div>
+          <div class="linha-texto-fake" style="width: 75%;"></div>
+        </div>
+
+        <div class="lista-acoes-resultado">
+          <button class="card-acao-resultado">
+            <div class="icone-acao-resultado">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 7V4h3M17 4h3v3M4 17v3h3M17 20h3v-3"/>
+                <line x1="9" y1="12" x2="15" y2="12"/>
+              </svg>
+            </div>
+            <div class="textos-acao-resultado">
+              <strong>Resumo Inteligente</strong>
+              <span>Gerar resumo com IA</span>
+            </div>
+            <svg class="seta-acao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+            </svg>
+            <div class="barra-inferior-acao" style="width: 45%;"></div>
+          </button>
+
+          <button class="card-acao-resultado">
+            <div class="icone-acao-resultado">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <div class="textos-acao-resultado">
+              <strong>Criar Flashcards</strong>
+              <span>Cards de estudo automático</span>
+            </div>
+            <svg class="seta-acao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+            </svg>
+            <div class="barra-inferior-acao" style="width: 45%;"></div>
+          </button>
+
+          <button class="card-acao-resultado">
+            <div class="icone-acao-resultado">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 4H6l6 8-6 8h12"/>
+              </svg>
+            </div>
+            <div class="textos-acao-resultado">
+              <strong>Resolver Equação</strong>
+              <span>Passo a passo da solução</span>
+            </div>
+            <svg class="seta-acao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+            </svg>
+            <div class="barra-inferior-acao" style="width: 45%;"></div>
+          </button>
+
+          <button class="card-acao-resultado">
+            <div class="icone-acao-resultado">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <div class="textos-acao-resultado">
+              <strong>Salvar em Matéria</strong>
+              <span>Organizar por disciplina</span>
+            </div>
+            <svg class="seta-acao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+            </svg>
+            <div class="barra-inferior-acao" style="width: 45%;"></div>
+          </button>
+
+          <button class="card-acao-resultado">
+            <div class="icone-acao-resultado">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </div>
+            <div class="textos-acao-resultado">
+              <strong>Compartilhar</strong>
+              <span>Envie para grupo de estudo</span>
+            </div>
+            <svg class="seta-acao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+            </svg>
+            <div class="barra-inferior-acao" style="width: 45%;"></div>
+          </button>
+        </div>
+      </div>
 
     </div>
   </main>

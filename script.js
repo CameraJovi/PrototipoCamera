@@ -64,11 +64,22 @@ for (let i = 0; i < botoesZoom.length; i++) {
 
 //Botão Capturar
 btnCaptura.addEventListener('click', function () {
-  contadorCapturas++;
-
   // Efeito de flash no visor
   visorCamera.classList.remove('flash');
+  void visorCamera.offsetWidth; // Força o reflow para reiniciar a animação
   visorCamera.classList.add('flash');
+
+  // Ativa a linha de scan se estiver no modo scan
+  if (visorCamera.classList.contains('scan-ativo')) {
+    visorCamera.classList.remove('em-leitura');
+    void visorCamera.offsetWidth;
+    visorCamera.classList.add('em-leitura');
+    
+    setTimeout(function() {
+      visorCamera.classList.remove('em-leitura');
+      document.getElementById('tela-resultado-scan').classList.add('ativa');
+    }, 4000);
+  }
 
   //alerta de confirmação
   let resAtiva = 'HD';
@@ -88,15 +99,22 @@ btnCaptura.addEventListener('click', function () {
     }
   }
 
-  let interna = miniaturaPreview.querySelector('.miniatura-interna');
-  interna.innerHTML = '';
-  let templateMin = document.getElementById('template-miniatura');
-  let divContador = templateMin.content.cloneNode(true).querySelector('.miniatura-contador');
-  divContador.textContent = contadorCapturas;
-  interna.appendChild(divContador);
+  if (!visorCamera.classList.contains('modo-estudante')) {
+    contadorCapturas++;
+    let interna = miniaturaPreview.querySelector('.miniatura-interna');
+    interna.innerHTML = '';
+    let templateMin = document.getElementById('template-miniatura');
+    let divContador = templateMin.content.cloneNode(true).querySelector('.miniatura-contador');
+    divContador.textContent = contadorCapturas;
+    interna.appendChild(divContador);
+  }
 
   
-  mostrarAlerta('Foto salva!');
+  if (visorCamera.classList.contains('scan-ativo')) {
+    mostrarAlerta('Analisando foto...');
+  } else {
+    mostrarAlerta('Foto salva!');
+  }
 
   // Animação de piscar ao tirar a foto
   quadroDetecao.style.transform = 'scale(1.15)';
@@ -200,9 +218,22 @@ for (let i = 0; i < botoesDeModo.length; i++) {
       visorCamera.classList.add('modo-estudante');
     } else {
       visorCamera.classList.remove('modo-estudante');
+      visorCamera.classList.remove('scan-ativo');
     }
   });
 }
+
+// Modo Scan
+let btnScan = document.querySelector('.card-estudante[data-acao="scan"]');
+let btnVoltarScan = document.getElementById('btn-voltar-scan');
+
+btnScan.addEventListener('click', function() {
+  visorCamera.classList.add('scan-ativo');
+});
+
+btnVoltarScan.addEventListener('click', function() {
+  visorCamera.classList.remove('scan-ativo');
+});
 
 //Relógio em tempo real
 function atualizarRelogio() {
@@ -217,3 +248,19 @@ function atualizarRelogio() {
 
 atualizarRelogio();
 setInterval(atualizarRelogio, 10000);
+
+// Fechar tela de resultado
+let btnCancelarResultado = document.getElementById('btn-cancelar-resultado');
+let btnSalvarResultado = document.getElementById('btn-salvar-resultado');
+
+if (btnCancelarResultado) {
+  btnCancelarResultado.addEventListener('click', function() {
+    document.getElementById('tela-resultado-scan').classList.remove('ativa');
+  });
+}
+
+if (btnSalvarResultado) {
+  btnSalvarResultado.addEventListener('click', function() {
+    document.getElementById('tela-resultado-scan').classList.remove('ativa');
+  });
+}

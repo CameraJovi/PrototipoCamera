@@ -10,13 +10,13 @@
 }
 
 :root {
-  --cor-principal: #7B4FE0;
-  --cor-clara: #9B6FFF;
-  --brilho-principal: rgba(123, 79, 224, 0.35);
-  --fundo-visor: #DDD5F0;
-  --grade-visor: rgba(150, 120, 200, 0.25);
-  --cor-leitura: #9B6FFF;
-  --brilho-leitura: rgba(155, 111, 255, 0.5);
+  --cor-principal: #FFC107;
+  --cor-clara: #FFD54F;
+  --brilho-principal: rgba(255, 193, 7, 0.35);
+  --fundo-visor: #332c2c;
+  --grade-visor: rgba(255, 193, 7, 0.25);
+  --cor-leitura: #FFC107;
+  --brilho-leitura: rgba(255, 193, 7, 0.5);
   --branco: #ffffff;
   --escuro: #1a1a1a;
   --icone-cinza: #2c2c2c;
@@ -94,6 +94,8 @@ body {
   font-weight: 600;
   letter-spacing: 0.02em;
   flex-shrink: 0;
+  position: relative;
+  z-index: 500;
 }
 
 .icones-status {
@@ -326,6 +328,38 @@ body {
   border-bottom-right-radius: 6px;
 }
 
+.linha-scan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--cor-principal);
+  box-shadow: 0 0 8px var(--cor-principal);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.visor-camera.em-leitura .linha-scan {
+  opacity: 1;
+  animation: mover-linha-uma-vez 4s ease-in-out;
+}
+
+@keyframes mover-linha-uma-vez {
+  0% { top: 0; }
+  50% { top: calc(100% - 2px); }
+  100% { top: 0; }
+}
+
+.visor-camera.scan-ativo #quadro-detecao {
+  width: 80% !important;
+  height: 60% !important;
+  max-width: 320px !important;
+  max-height: 480px !important;
+  transition: width 0.3s, height 0.3s;
+}
+
 /* Seletor de Zoom */
 .seletor-zoom {
   position: absolute;
@@ -395,7 +429,6 @@ body {
   align-items: center;
   justify-content: center;
   transition: border-color 0.2s, transform 0.15s;
-  box-shadow: 0 0 12px var(--brilho-principal);
 }
 
 .miniatura-interna {
@@ -427,6 +460,11 @@ body {
 
 .miniatura-preview:active {
   transform: scale(0.93);
+}
+
+.visor-camera.modo-estudante + .barra-inferior .miniatura-preview {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Botão de Capturar (Shutter) */
@@ -530,7 +568,6 @@ body {
   background: var(--cor-principal);
   color: var(--branco);
   font-weight: 600;
-  box-shadow: 0 2px 8px var(--brilho-principal);
 }
 
 /*Animação do Flash (Captura)*/
@@ -588,7 +625,7 @@ body {
   top: 14px;
   left: 50%;
   transform: translateX(-50%) translateY(-8px);
-  background: rgba(123, 79, 224, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   color: var(--cor-principal);
   font-size: 11px;
   font-weight: 600;
@@ -638,7 +675,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(20, 20, 20, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: none;
@@ -655,7 +692,7 @@ body {
   /* Estado inicial oculto */
   opacity: 0;
   transform: translateY(22px);
-  transition: opacity 0.0s, transform 0.0s, background 0.2s;
+  transition: opacity 0.0s, transform 0.0s, background-color 0.2s;
 }
 
 .card-estudante svg {
@@ -667,24 +704,64 @@ body {
 /* Entrada escalonada ao ativar o modo */
 .visor-camera.modo-estudante .card-estudante:nth-child(1) {
   opacity: 1; transform: translateY(0);
-  transition: opacity 0.3s ease 0.2s, transform 0.38s cubic-bezier(0.34,1.56,0.64,1) 0.2s, background 0.2s;
+  transition: opacity 0.3s ease 0.2s, transform 0.38s cubic-bezier(0.34,1.56,0.64,1) 0.2s, background-color 0.2s;
 }
 .visor-camera.modo-estudante .card-estudante:nth-child(2) {
   opacity: 1; transform: translateY(0);
-  transition: opacity 0.3s ease 0.28s, transform 0.38s cubic-bezier(0.34,1.56,0.64,1) 0.28s, background 0.2s;
+  transition: opacity 0.3s ease 0.28s, transform 0.38s cubic-bezier(0.34,1.56,0.64,1) 0.28s, background-color 0.2s;
 }
 .visor-camera.modo-estudante .card-estudante:nth-child(3) {
   opacity: 1; transform: translateY(0);
-  transition: opacity 0.3s ease 0.36s, transform 0.38s cubic-bezier(0.34,1.56,0.64,1) 0.36s, background 0.2s;
+  transition: opacity 0.3s ease 0.36s, transform 0.38s cubic-bezier(0.34,1.56,0.64,1) 0.36s, background-color 0.2s;
 }
 .visor-camera.modo-estudante .card-estudante:nth-child(4) {
   opacity: 1; transform: translateY(0);
-  transition: opacity 0.3s ease 0.44s, transform 0.38s cubic-bezier(0.34,1.56,0.64,1) 0.44s, background 0.2s;
+  transition: opacity 0.3s ease 0.44s, transform 0.38s cubic-bezier(0.34,1.56,0.64,1) 0.44s, background-color 0.2s;
+}
+
+.visor-camera.scan-ativo .estudante-cards {
+  display: none;
 }
 
 .card-estudante:active {
-  background: rgba(123, 79, 224, 0.15);
+  background: rgba(255, 193, 7, 0.25);
   transform: scale(0.92) !important;
+}
+
+.btn-voltar-scan {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fonte);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cor-principal);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  cursor: pointer;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.btn-voltar-scan svg {
+  width: 18px;
+  height: 18px;
+}
+
+.visor-camera.scan-ativo .btn-voltar-scan {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .alerta-jovi {
@@ -759,4 +836,143 @@ body {
   font-size: 10px;
   color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
+}
+
+/* Tela de Resultado do Scan */
+.tela-resultado-scan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--escuro);
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  padding: 0 24px;
+}
+
+.tela-resultado-scan.ativa {
+  transform: translateY(0);
+}
+
+.header-resultado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  margin-top: max(40px, env(safe-area-inset-top));
+  flex-shrink: 0;
+}
+
+.btn-texto-resultado {
+  background: none;
+  border: none;
+  color: var(--cor-principal);
+  font-family: var(--fonte);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.titulo-resultado {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--branco);
+}
+
+.preview-documento {
+  background: #2c2c2c;
+  border-radius: 20px;
+  padding: 30px 24px;
+  margin: 10px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  min-height: 240px;
+  max-height: 320px;
+}
+
+.linha-texto-fake {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+}
+
+.lista-acoes-resultado {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+
+.card-acao-resultado {
+  background: #2c2c2c;
+  border: 1px solid #3d3d3d;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.card-acao-resultado:active {
+  background: #383838;
+  transform: scale(0.98);
+}
+
+.icone-acao-resultado {
+  color: var(--cor-principal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icone-acao-resultado svg {
+  width: 22px;
+  height: 22px;
+}
+
+.textos-acao-resultado {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.textos-acao-resultado strong {
+  font-family: var(--fonte);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cor-principal);
+}
+
+.textos-acao-resultado span {
+  font-family: var(--fonte);
+  font-size: 12px;
+  color: #aaa;
+}
+
+.seta-acao {
+  width: 18px;
+  height: 18px;
+  color: #999;
+}
+
+.barra-inferior-acao {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--cor-principal);
 }
