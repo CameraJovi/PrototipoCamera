@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cor-principal: #FFC107;
+  --cor-clara: #FFD54F;
+  --brilho-principal: rgba(255, 193, 7, 0.35);
+  --fundo-visor: #332c2c;
+  --grade-visor: rgba(255, 193, 7, 0.25);
+  --cor-leitura: #FFC107;
+  --brilho-leitura: rgba(255, 193, 7, 0.5);
+  --branco: #ffffff;
+  --escuro: #1a1a1a;
+  --icone-cinza: #2c2c2c;
+  --fundo-icone: rgba(255, 255, 255, 0.92);
+  --fundo-inferior: #1e1e1e;
+  --fonte: 'Inter', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family: var(--fonte);
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Container do Celular */
+.container-celular {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.tela-celular {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--escuro);
+  position: relative;
+}
+
+/* Desktop: mostra a borda decorativa simulando um celular */
+@media (min-width: 500px) {
+  body {
+    background: #111;
+  }
+  .container-celular {
+    width: 390px;
+    height: 844px;
+    flex-shrink: 0;
+  }
+  .tela-celular {
+    border-radius: 48px;
+    box-shadow: 0 0 0 10px #2a2a2a, 0 0 0 12px #444, 0 30px 80px rgba(0, 0, 0, 0.8);
+  }
+}

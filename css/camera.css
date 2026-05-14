@@ -1,0 +1,189 @@
+/* Visor da Câmera */
+.visor-camera {
+  flex: 1;
+  background: var(--fundo-visor);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Grade overlay */
+.sobreposicao-grade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.linha-grade {
+  position: absolute;
+  background: var(--grade-visor);
+}
+
+.grade-v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.grade-h {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+/* Quadro de Detecção */
+.quadro-detecao {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  z-index: 10;
+}
+
+.canto {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: var(--cor-leitura);
+  border-style: solid;
+  border-radius: 4px;
+}
+
+.canto-se {
+  top: 0;
+  left: 0;
+  border-width: 3px 0 0 3px;
+  border-top-left-radius: 6px;
+}
+
+.canto-sd {
+  top: 0;
+  right: 0;
+  border-width: 3px 3px 0 0;
+  border-top-right-radius: 6px;
+}
+
+.canto-ie {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 3px 3px;
+  border-bottom-left-radius: 6px;
+}
+
+.canto-id {
+  bottom: 0;
+  right: 0;
+  border-width: 0 3px 3px 0;
+  border-bottom-right-radius: 6px;
+}
+
+.linha-scan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--cor-principal);
+  box-shadow: 0 0 8px var(--cor-principal);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.visor-camera.em-leitura .linha-scan {
+  opacity: 1;
+  animation: mover-linha-uma-vez 4s ease-in-out;
+}
+
+@keyframes mover-linha-uma-vez {
+  0% { top: 0; }
+  50% { top: calc(100% - 2px); }
+  100% { top: 0; }
+}
+
+.visor-camera.scan-ativo #quadro-detecao {
+  width: 80% !important;
+  height: 60% !important;
+  max-width: 320px !important;
+  max-height: 480px !important;
+  transition: width 0.3s, height 0.3s;
+}
+
+/* Seletor de Zoom */
+.seletor-zoom {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  padding: 4px 8px;
+  z-index: 20;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.visor-camera.modo-estudante #seletor-zoom {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px);
+}
+
+.btn-zoom {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--fonte);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.zoom-x {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.btn-zoom.zoom-ativo {
+  background: var(--cor-principal);
+  color: var(--branco);
+  font-weight: 700;
+}
+
+.btn-zoom:active {
+  transform: scale(0.9);
+}
+
+/* Animações Camera */
+@keyframes pisca-captura {
+  0% { opacity: 0; }
+  10% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+.visor-camera.flash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  animation: pisca-captura 0.5s ease-out forwards;
+}
+
+@keyframes escala-zoom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
