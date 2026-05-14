@@ -1,0 +1,68 @@
+/* Barra de Status */
+.barra-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px 4px;
+  background: var(--fundo-inferior);
+  color: var(--branco);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 500;
+  padding-top: max(14px, env(safe-area-inset-top));
+}
+
+.icones-status {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.icone-status {
+  width: 16px;
+  height: 16px;
+  color: var(--branco);
+}
+
+/* Barra Superior */
+.barra-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px 10px;
+  background: var(--fundo-inferior);
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Barra Inferior */
+.barra-inferior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px 10px;
+  background: var(--fundo-inferior);
+  flex-shrink: 0;
+}
+
+/* Controles da Direita (Container) */
+.controles-direita {
+  width: 52px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Barra de Rótulos de Modo */
+.barra-modos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 28px 20px;
+  background: var(--fundo-inferior);
+  flex-shrink: 0;
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
