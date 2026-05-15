@@ -15,8 +15,10 @@ let contadorCapturas = 0;
 let menuAberto = false;
 let modoCaptura = null;
 
-// Função simples para mostrar mensagens na tela (cria e destroi via HTML)
+// Função simples para mostrar os alerts
 function mostrarAlerta(titulo) {
+  alert(titulo);
+
   const anterior = document.getElementById('alerta-jovi');
   if (anterior) {
     anterior.parentNode.removeChild(anterior);
