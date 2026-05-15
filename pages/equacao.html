@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Resolver Equação — Jovi</title>
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/acoes_foto.css" />
+  <link rel="stylesheet" href="../css/equacao.css" />
+</head>
+<body>
+  <main class="container-celular">
+    <div class="tela-celular">
+
+      <div class="tela-acao ativa" style="position:relative; transform:none;">
+        <header class="header-acao">
+          <button class="btn-voltar-acao" onclick="history.back()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+            </svg>
+            Scan
+          </button>
+          <span class="titulo-acao">Resolver Equação</span>
+        </header>
+
+        <div class="corpo-acao">
+
+          <!-- Preview do documento capturado -->
+          <div class="equacao-preview-quadro" id="equacao-preview">
+            <div class="equacao-linha-fake equacao" style="width: 60%;"></div>
+            <div class="equacao-linha-fake equacao" style="width: 68%;"></div>
+            <div class="equacao-linha-fake" style="width: 80%;"></div>
+            <div class="equacao-linha-fake" style="width: 90%;"></div>
+            <div class="equacao-linha-fake" style="width: 75%;"></div>
+            <div class="equacao-linha-fake" style="width: 85%;"></div>
+          </div>
+
+          <!-- Bloco de resolução passo a passo -->
+          <div class="equacao-resolucao" id="equacao-resolucao">
+            <p class="resolucao-titulo">Resolva o sistema de equações matemáticas</p>
+
+            <div class="resolucao-sistema">
+              <span class="resolucao-eq">2x + y = 8</span>
+              <span class="resolucao-eq">2x − y = 12</span>
+            </div>
+
+            <div class="resolucao-dica">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7-7-7M12 3v18"/>
+              </svg>
+              Resolva usando o método da substituição
+            </div>
+
+            <div class="resolucao-passo">
+              <span class="resolucao-passo-texto">2x = 12 + y</span>
+            </div>
+
+            <div class="resolucao-passo">
+              <span class="resolucao-passo-texto">(12 + y) + y = 8</span>
+            </div>
+
+            <div class="resolucao-passo">
+              <span class="resolucao-passo-texto">2y = 8 − 12</span>
+            </div>
+
+            <div class="resolucao-passo">
+              <span class="resolucao-passo-texto destaque">y = −2</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>

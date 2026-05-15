@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Resumo Inteligente — Jovi</title>
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/acoes_foto.css" />
+  <link rel="stylesheet" href="../css/resumo.css" />
+</head>
+<body>
+  <main class="container-celular">
+    <div class="tela-celular">
+
+      <div class="tela-acao ativa" style="position:relative; transform:none;">
+        <header class="header-acao">
+          <button class="btn-voltar-acao" onclick="history.back()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+            </svg>
+            Scan
+          </button>
+          <span class="titulo-acao">Resumo Inteligente</span>
+        </header>
+
+        <div class="corpo-acao">
+          
+          <div class="resumo-header">
+            <h2 class="resumo-titulo-materia">Sistemas e Matrizes</h2>
+            <p class="resumo-subtitulo">Disciplina: Álgebra Linear</p>
+          </div>
+
+          <div class="resumo-bloco">
+            <div class="resumo-topico">
+              <h3 class="resumo-topico-titulo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                O que é um Sistema Linear?
+              </h3>
+              <p class="resumo-topico-texto">Conjunto de equações de 1º grau com duas ou mais incógnitas que devem ser resolvidas simultaneamente.</p>
+            </div>
+
+            <div class="resumo-divisor"></div>
+
+            <div class="resumo-topico">
+              <h3 class="resumo-topico-titulo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                Métodos de Resolução
+              </h3>
+              <p class="resumo-topico-texto">Substituição, adição (eliminação) e método gráfico. O objetivo é encontrar os valores que satisfaçam todas as equações.</p>
+            </div>
+          </div>
+
+          <div class="resumo-destaque">
+            <div class="resumo-destaque-icone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7-7-7M12 3v18"/></svg>
+            </div>
+            <p class="resumo-destaque-texto"><strong>Dica:</strong> Quando os coeficientes são opostos (+y e -y), use o método da adição para eliminar uma variável rapidamente.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>

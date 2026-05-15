@@ -1,0 +1,139 @@
+
+/* ── Preview do documento capturado ── */
+.equacao-preview-quadro {
+  background: #2c2c2c;
+  border-radius: 20px;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Linha decorativa amarela na borda esquerda */
+.equacao-preview-quadro::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--cor-principal);
+  border-radius: 3px 0 0 3px;
+}
+
+/* Linhas de texto fake (esqueleto do documento) */
+.equacao-linha-fake {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+}
+
+/* Linha que representa equação — levemente mais brilhante */
+.equacao-linha-fake.equacao {
+  background: rgba(255, 193, 7, 0.22);
+  height: 7px;
+}
+
+/* ── Bloco de resolução passo a passo ── */
+.equacao-resolucao {
+  background: #242424;
+  border-radius: 16px;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid #333;
+}
+
+.resolucao-titulo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--branco);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+@keyframes fadeEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.resolucao-sistema {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 14px;
+  opacity: 0;
+  animation: fadeEntrada 0.5s ease forwards;
+  animation-delay: 0.1s;
+}
+
+.resolucao-eq {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cor-principal);
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.03em;
+}
+
+.resolucao-dica {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 16px;
+  padding-top: 2px;
+  opacity: 0;
+  animation: fadeEntrada 0.5s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.resolucao-dica svg {
+  width: 15px;
+  height: 15px;
+  color: var(--cor-principal);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Passos com fade-in sequencial via CSS */
+.resolucao-passo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 13px 0;
+  border-top: 1px solid #2e2e2e;
+  opacity: 0;
+  animation: fadeEntrada 0.5s ease forwards;
+}
+
+/* Baseado na ordem das divs na equacao-resolucao */
+.resolucao-passo:nth-of-type(3) { animation-delay: 0.6s; }
+.resolucao-passo:nth-of-type(4) { animation-delay: 0.9s; }
+.resolucao-passo:nth-of-type(5) { animation-delay: 1.2s; }
+.resolucao-passo:nth-of-type(6) { animation-delay: 1.5s; }
+
+.resolucao-passo-texto {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ccc;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.02em;
+}
+
+/* Resultado final — amarelo e maior */
+.resolucao-passo-texto.destaque {
+  font-size: 17px;
+  color: var(--cor-principal);
+  font-weight: 700;
+}

@@ -1,0 +1,101 @@
+
+/* Base compartilhada para todas as telas de ação */
+.tela-acao {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--escuro);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  overflow: hidden;
+}
+
+.tela-acao.ativa {
+  transform: translateX(0);
+}
+
+/* Header padrão de ação */
+.header-acao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  margin-top: max(40px, env(safe-area-inset-top));
+  flex-shrink: 0;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.btn-voltar-acao {
+  background: none;
+  border: none;
+  color: var(--cor-principal);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fonte);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.btn-voltar-acao svg {
+  width: 20px;
+  height: 20px;
+}
+
+.titulo-acao {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--branco);
+  margin-right: 60px;
+}
+
+/* Corpo rolável das telas */
+.corpo-acao {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 20px max(20px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Chip de status IA ── */
+.chip-ia {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 193, 7, 0.12);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cor-principal);
+  letter-spacing: 0.04em;
+  align-self: flex-start;
+}
+
+.chip-ia::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cor-principal);
+  animation: pulsar-chip 1.8s ease-in-out infinite;
+}
+
+@keyframes pulsar-chip {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+

@@ -103,12 +103,41 @@
   100% { top: 0; }
 }
 
-.visor-camera.scan-ativo #quadro-detecao {
+.visor-camera.scan-ativo #quadro-detecao,
+.visor-camera.flashcard-ativo #quadro-detecao,
+.visor-camera.math-ativo #quadro-detecao {
   width: 80% !important;
   height: 60% !important;
   max-width: 320px !important;
   max-height: 480px !important;
-  transition: width 0.3s, height 0.3s;
+  transition: width 0.35s cubic-bezier(0.34, 1.2, 0.64, 1), height 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+/* Esconde os cards de ação quando qualquer modo de captura está ativo */
+.visor-camera.scan-ativo .estudante-cards,
+.visor-camera.flashcard-ativo .estudante-cards,
+.visor-camera.math-ativo .estudante-cards {
+  display: none;
+}
+
+/* Mostra o botão voltar nos três modos */
+.visor-camera.scan-ativo .btn-voltar-scan,
+.visor-camera.flashcard-ativo .btn-voltar-scan,
+.visor-camera.math-ativo .btn-voltar-scan {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Label de modo dentro do visor para flashcard e math */
+.visor-camera.flashcard-ativo .estudante-badge-visor {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  content: '● Modo Flashcard';
+}
+
+.visor-camera.math-ativo .estudante-badge-visor {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Seletor de Zoom */

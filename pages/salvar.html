@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Salvar — Jovi</title>
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/acoes_foto.css" />
+  <link rel="stylesheet" href="../css/salvar.css" />
+</head>
+<body>
+  <main class="container-celular">
+    <div class="tela-celular">
+
+      <div class="tela-acao ativa" style="position:relative; transform:none;">
+        <header class="header-acao">
+          <button class="btn-voltar-acao" onclick="history.back()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+            </svg>
+            Scan
+          </button>
+          <span class="titulo-acao">Salvar em Matéria</span>
+        </header>
+        <div class="corpo-acao">
+          <p class="salvar-instrucao">Escolha a disciplina onde este scan será salvo</p>
+          <div class="lista-materias">
+            <button class="card-materia selecionado">
+              <div class="materia-icone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="6" x2="9" y2="6"/><line x1="4" y1="18" x2="9" y2="18"/></svg>
+              </div>
+              <div class="materia-info">
+                <span class="materia-nome">Matemática</span>
+                <span class="materia-qtd">12 scans salvos</span>
+              </div>
+              <div class="materia-check"><div class="materia-check-inner"></div></div>
+            </button>
+            <button class="card-materia">
+              <div class="materia-icone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div class="materia-info">
+                <span class="materia-nome">Física</span>
+                <span class="materia-qtd">7 scans salvos</span>
+              </div>
+              <div class="materia-check"><div class="materia-check-inner"></div></div>
+            </button>
+            <button class="card-materia">
+              <div class="materia-icone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div class="materia-info">
+                <span class="materia-nome">Português</span>
+                <span class="materia-qtd">3 scans salvos</span>
+              </div>
+              <div class="materia-check"><div class="materia-check-inner"></div></div>
+            </button>
+            <button class="card-materia">
+              <div class="materia-icone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="materia-info">
+                <span class="materia-nome">Programação</span>
+                <span class="materia-qtd">20 scans salvos</span>
+              </div>
+              <div class="materia-check"><div class="materia-check-inner"></div></div>
+            </button>
+            <button class="card-materia">
+              <div class="materia-icone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="materia-info">
+                <span class="materia-nome">Inglês</span>
+                <span class="materia-qtd">5 scans salvos</span>
+              </div>
+              <div class="materia-check"><div class="materia-check-inner"></div></div>
+            </button>
+          </div>
+          <button class="btn-salvar-materia" id="btn-confirmar-salvar">Salvar aqui</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/script.js"></script>
+
+</body>
+</html>
