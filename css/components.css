@@ -224,35 +224,59 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Pílula de Modos */
+/* Pílula de Modos - Estilo Câmera Profissional */
+.barra-modos {
+  display: flex;
+  justify-content: center;
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  overflow: hidden;
+  background: var(--fundo-inferior); /* Garante a cor aqui também */
+}
+
 .segmento-modos {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  padding: 3px;
+  gap: 10px;
+  padding: 10px 150px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.segmento-modos::-webkit-scrollbar {
+  display: none;
 }
 
 .botao-modo {
-  padding: 7px 22px;
+  padding: 6px 15px;
   border-radius: 999px;
   border: none;
   font-family: var(--fonte);
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
   background: transparent;
   cursor: pointer;
-  transition: color 0.2s, background-color 0.25s, box-shadow 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  min-width: 90px;
+  text-align: center;
 }
 
 .botao-modo.active {
-  background: var(--cor-principal);
-  color: var(--branco);
-  font-weight: 600;
+  color: var(--cor-principal);
+  font-weight: 800;
+  transform: scale(1.1);
 }
 
-/* Alerta Jovi */
+/* Alerta*/
 .alerta-jovi {
   position: absolute;
   top: 108px;

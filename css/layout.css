@@ -57,12 +57,7 @@
 
 /* Barra de Rótulos de Modo */
 .barra-modos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 8px 28px 20px;
   background: var(--fundo-inferior);
   flex-shrink: 0;
-  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  position: relative;
 }

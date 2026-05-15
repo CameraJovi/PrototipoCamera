@@ -127,7 +127,7 @@
         </button>
       </section>
 
-      <footer class="barra-inferior">
+      <section class="barra-inferior">
         <button class="miniatura-preview" id="miniatura-preview">
           <div class="miniatura-interna">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -150,14 +150,17 @@
             </svg>
           </button>
         </div>
-      </footer>
+      </section>
 
-      <nav class="barra-modos">
-        <div class="segmento-modos">
+      <footer class="barra-modos">
+        <div class="segmento-modos" id="segmento-modos">
+          <button class="botao-modo" data-mode="retrato">Retrato</button>
+          <button class="botao-modo" data-mode="video">Vídeo</button>
           <button class="botao-modo active" id="mode-foto" data-mode="foto">Foto</button>
           <button class="botao-modo" id="mode-estudante" data-mode="estudante">Estudante</button>
+          <button class="botao-modo" data-mode="pro">Pro</button>
         </div>
-      </nav>
+      </footer>
 
     </div>
   </main>
