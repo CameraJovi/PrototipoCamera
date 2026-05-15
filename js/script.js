@@ -27,12 +27,12 @@ function mostrarAlerta(titulo) {
   const alerta = document.createElement('div');
   alerta.id = 'alerta-jovi';
   alerta.className = 'alerta-jovi';
-  
+
   let html = '<div class="alerta-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>';
   html += '<div class="alerta-textos"><strong class="alerta-titulo">' + titulo + '</strong></div>';
-  
+
   alerta.innerHTML = html;
-  
+
   const celular = document.querySelector('.tela-celular');
   celular.appendChild(alerta);
 
@@ -48,10 +48,10 @@ function atualizarRelogio() {
   const agora = new Date();
   let hora = agora.getHours();
   let min = agora.getMinutes();
-  
+
   if (hora < 10) { hora = '0' + hora; }
   if (min < 10) { min = '0' + min; }
-  
+
   const el = document.querySelector('.hora-status');
   if (el) {
     el.innerHTML = hora + ':' + min;
@@ -67,7 +67,7 @@ if (botoesZoom.length > 0 && quadroDetecao) {
         botoesZoom[j].className = 'btn-zoom';
       }
       this.className = 'btn-zoom zoom-ativo';
-      
+
       const zoomValue = this.getAttribute('data-zoom');
       zoomAtual = parseFloat(zoomValue);
 
@@ -87,7 +87,7 @@ if (botoesZoom.length > 0 && quadroDetecao) {
 if (btnCaptura && visorCamera && quadroDetecao) {
   btnCaptura.onclick = function () {
     const classesVisor = visorCamera.className;
-    
+
     if (classesVisor.indexOf('scan-ativo') !== -1) {
       modoCaptura = 'scan';
     } else if (classesVisor.indexOf('flashcard-ativo') !== -1) {
@@ -102,9 +102,9 @@ if (btnCaptura && visorCamera && quadroDetecao) {
       visorCamera.className += ' em-leitura';
       mostrarAlerta('ANALISANDO...');
 
-      setTimeout(function() {
+      setTimeout(function () {
         visorCamera.className = visorCamera.className.replace(' em-leitura', '');
-        
+
         if (modoCaptura == 'math') {
           window.location.href = 'pages/equacao.html';
         } else if (modoCaptura == 'flashcard') {
@@ -117,10 +117,10 @@ if (btnCaptura && visorCamera && quadroDetecao) {
     } else {
       contadorCapturas++;
       mostrarAlerta('FOTO SALVA!');
-      
+
       if (miniaturaPreview) {
         const interna = miniaturaPreview.querySelector('.miniatura-interna');
-        if(interna) interna.innerHTML = '<div class="miniatura-contador">' + contadorCapturas + '</div>';
+        if (interna) interna.innerHTML = '<div class="miniatura-contador">' + contadorCapturas + '</div>';
       }
     }
 
@@ -141,7 +141,7 @@ if (btnLanterna && iconeLanternaLigada && iconeLanternaDesligada) {
       lanternaLigada = true;
       iconeLanternaLigada.style.display = 'none';
       iconeLanternaDesligada.style.display = '';
-      btnLanterna.style.background = '#FFC107'; 
+      btnLanterna.style.background = '#FFC107';
       btnLanterna.style.color = '#ffffff';
       mostrarAlerta('FLASH ATIVADO');
     } else {
@@ -173,7 +173,7 @@ if (btnGirar && visorCamera) {
   btnGirar.onclick = function () {
     btnGirar.style.transform = 'rotate(180deg)';
     visorCamera.style.opacity = '0.3';
-    
+
     setTimeout(function () {
       btnGirar.style.transform = 'rotate(0deg)';
       visorCamera.style.opacity = '1';
@@ -192,14 +192,14 @@ if (botoesDeModo.length > 0 && visorCamera) {
       }
       // Adiciona no atual
       this.classList.add('active');
-      
+
       // Centraliza o botão no scroll
       this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      
+
       const modo = this.getAttribute('data-mode');
-      
+
       const btnCapturaInterna = document.querySelector('.captura-interna');
-      
+
       if (modo == 'estudante') {
         visorCamera.className = 'visor-camera modo-estudante';
         if (btnCapturaInterna) btnCapturaInterna.style.background = '';
@@ -223,25 +223,25 @@ const btnVoltarScan = document.getElementById('btn-voltar-scan');
 const badgeVisor = document.getElementById('estudante-badge-visor');
 
 if (btnScan) {
-  btnScan.onclick = function() {
+  btnScan.onclick = function () {
     visorCamera.className = 'visor-camera modo-estudante scan-ativo';
     badgeVisor.innerHTML = '&bull; Scan';
   };
 }
 if (btnFlashcard) {
-  btnFlashcard.onclick = function() {
+  btnFlashcard.onclick = function () {
     visorCamera.className = 'visor-camera modo-estudante flashcard-ativo';
     badgeVisor.innerHTML = '&bull; Flashcard';
   };
 }
 if (btnMath) {
-  btnMath.onclick = function() {
+  btnMath.onclick = function () {
     visorCamera.className = 'visor-camera modo-estudante math-ativo';
     badgeVisor.innerHTML = '&bull; Math';
   };
 }
 if (btnVoltarScan) {
-  btnVoltarScan.onclick = function() {
+  btnVoltarScan.onclick = function () {
     visorCamera.className = 'visor-camera modo-estudante';
     badgeVisor.innerHTML = '&bull; Modo estudante';
   };
@@ -251,24 +251,28 @@ if (btnVoltarScan) {
 const cardsMaterias = document.querySelectorAll('.card-materia');
 if (cardsMaterias.length > 0) {
   for (let i = 0; i < cardsMaterias.length; i++) {
-    cardsMaterias[i].onclick = function() {
-      for (let j = 0; j < cardsMaterias.length; j++) {
-        cardsMaterias[j].className = 'card-materia';
+    // Pula se for o botão de criar nova matéria
+    if (cardsMaterias[i].classList.contains('btn-nova-materia')) continue;
+
+    cardsMaterias[i].onclick = function () {
+      const todosOsCards = document.querySelectorAll('.card-materia');
+      for (let j = 0; j < todosOsCards.length; j++) {
+        todosOsCards[j].classList.remove('selecionado');
       }
-      this.className = 'card-materia selecionado';
+      this.classList.add('selecionado');
     };
   }
 
   const btnConfirmarSalvar = document.getElementById('btn-confirmar-salvar');
   if (btnConfirmarSalvar) {
-    btnConfirmarSalvar.onclick = function() {
+    btnConfirmarSalvar.onclick = function () {
       const nomeSelecionado = document.querySelector('.card-materia.selecionado .materia-nome');
       let nome = 'Matéria';
       if (nomeSelecionado) {
         nome = nomeSelecionado.innerHTML;
       }
       mostrarAlerta('SALVO EM ' + nome.toUpperCase() + '!');
-      setTimeout(function() {
+      setTimeout(function () {
         window.history.back();
       }, 1500);
     };
@@ -346,6 +350,45 @@ function mudarSlideMath(direcao) {
 // Inicia relogio
 atualizarRelogio();
 setInterval(atualizarRelogio, 10000);
+
+// Função para criar nova matéria
+function novaMateria() {
+  let nome = "";
+
+  while (true) {
+    nome = prompt("Digite o nome da nova disciplina:");
+
+    if (nome === null)
+      return;
+    if (nome.trim() !== "")
+      break;
+
+    alert("Dê um nome a disciplina!");
+  }
+
+  const template = document.getElementById('molde-materia');
+  const lista = document.querySelector('.lista-materias');
+  const btnNova = document.querySelector('.btn-nova-materia');
+
+  if (template && lista && btnNova) {
+    const clone = template.content.cloneNode(true);
+    const novoCard = clone.querySelector('button');
+
+    novoCard.querySelector('.materia-nome').innerText = nome.trim();
+
+    novoCard.onclick = function () {
+      const todos = document.querySelectorAll('.card-materia');
+      for (let j = 0; j < todos.length; j++) {
+        todos[j].classList.remove('selecionado');
+      }
+      this.classList.add('selecionado');
+    };
+
+    lista.insertBefore(novoCard, btnNova);
+    mostrarAlerta("MATÉRIA " + nome.trim().toUpperCase() + " CRIADA!");
+    novoCard.click();
+  }
+}
 
 // Centraliza o modo ativo no início
 const modoAtivo = document.querySelector('.botao-modo.active');
