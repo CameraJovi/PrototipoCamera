@@ -181,21 +181,35 @@ if (btnGirar && visorCamera) {
   };
 }
 
-// Selecao de modo Foto/Estudante
+// Seleção de modo (Arrastável e Clicável)
 const botoesDeModo = document.querySelectorAll('.botao-modo');
 if (botoesDeModo.length > 0 && visorCamera) {
   for (let m = 0; m < botoesDeModo.length; m++) {
     botoesDeModo[m].onclick = function () {
+      // Remove active de todos
       for (let n = 0; n < botoesDeModo.length; n++) {
-        botoesDeModo[n].className = 'botao-modo';
+        botoesDeModo[n].classList.remove('active');
       }
-      this.className = 'botao-modo active';
+      // Adiciona no atual
+      this.classList.add('active');
+      
+      // Centraliza o botão no scroll
+      this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       
       const modo = this.getAttribute('data-mode');
+      
+      const btnCapturaInterna = document.querySelector('.captura-interna');
+      
       if (modo == 'estudante') {
         visorCamera.className = 'visor-camera modo-estudante';
-      } else {
+        if (btnCapturaInterna) btnCapturaInterna.style.background = '';
+      } else if (modo == 'video') {
         visorCamera.className = 'visor-camera';
+        if (btnCapturaInterna) btnCapturaInterna.style.background = '#ff3b30'; // Vermelho iOS/Video
+      } else {
+        // Foto, Retrato, Pro
+        visorCamera.className = 'visor-camera';
+        if (btnCapturaInterna) btnCapturaInterna.style.background = '';
       }
     };
   }
@@ -281,6 +295,60 @@ function virarFlashcard(btn) {
   }
 }
 
+// Slideshow de Matemática
+let slideMathAtual = 0;
+function mudarSlideMath(direcao) {
+  const slides = document.querySelectorAll('.slide-equacao');
+  if (slides.length === 0) return;
+
+  slides[slideMathAtual].classList.remove('ativo');
+  slideMathAtual += direcao;
+
+  if (slideMathAtual < 0) slideMathAtual = 0;
+  if (slideMathAtual >= slides.length) slideMathAtual = slides.length - 1;
+
+  slides[slideMathAtual].classList.add('ativo');
+
+  // Atualiza controles
+  const btnAnterior = document.getElementById('btn-math-anterior');
+  const btnProximo = document.getElementById('btn-math-proximo');
+  const contador = document.getElementById('contador-math');
+
+  if (slideMathAtual === 0) {
+    if (btnAnterior) btnAnterior.style.display = 'none';
+    if (contador) contador.style.display = 'none';
+    if (btnProximo) {
+      btnProximo.style.display = 'flex';
+      btnProximo.innerHTML = 'Mais exemplos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+    }
+    const container = document.querySelector('.controles-slideshow');
+    if (container) container.style.justifyContent = 'flex-end';
+  } else {
+    if (btnAnterior) btnAnterior.style.display = 'flex';
+    if (contador) {
+      contador.style.display = 'block';
+      contador.innerText = (slideMathAtual + 1) + " de " + slides.length;
+    }
+    if (btnProximo) {
+      btnProximo.innerHTML = 'Próximo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+      // Se for o último slide, esconde o próximo
+      if (slideMathAtual === slides.length - 1) {
+        btnProximo.style.display = 'none';
+      } else {
+        btnProximo.style.display = 'flex';
+      }
+    }
+    const container = document.querySelector('.controles-slideshow');
+    if (container) container.style.justifyContent = 'space-between';
+  }
+}
+
 // Inicia relogio
 atualizarRelogio();
 setInterval(atualizarRelogio, 10000);
+
+// Centraliza o modo ativo no início
+const modoAtivo = document.querySelector('.botao-modo.active');
+if (modoAtivo) {
+  modoAtivo.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+}

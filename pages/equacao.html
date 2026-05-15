@@ -26,48 +26,102 @@
         </header>
 
         <div class="corpo-acao">
+          
+          <div id="container-equacao">
+            <!-- Slide 1: Sistema -->
+            <div class="slide-equacao ativo">
+              <div class="equacao-preview-quadro">
+                <div class="equacao-linha-fake equacao" style="width: 60%;"></div>
+                <div class="equacao-linha-fake equacao" style="width: 68%;"></div>
+                <div class="equacao-linha-fake" style="width: 80%;"></div>
+                <div class="equacao-linha-fake" style="width: 90%;"></div>
+                <div class="equacao-linha-fake" style="width: 75%;"></div>
+                <div class="equacao-linha-fake" style="width: 85%;"></div>
+              </div>
 
-          <!-- Preview do documento capturado -->
-          <div class="equacao-preview-quadro" id="equacao-preview">
-            <div class="equacao-linha-fake equacao" style="width: 60%;"></div>
-            <div class="equacao-linha-fake equacao" style="width: 68%;"></div>
-            <div class="equacao-linha-fake" style="width: 80%;"></div>
-            <div class="equacao-linha-fake" style="width: 90%;"></div>
-            <div class="equacao-linha-fake" style="width: 75%;"></div>
-            <div class="equacao-linha-fake" style="width: 85%;"></div>
+              <div class="equacao-resolucao">
+                <p class="resolucao-titulo">Resolva o sistema de equações</p>
+                <div class="resolucao-sistema">
+                  <span class="resolucao-eq">2x + y = 8</span>
+                  <span class="resolucao-eq">2x − y = 12</span>
+                </div>
+                <div class="resolucao-dica">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7-7-7M12 3v18"/>
+                  </svg>
+                  Método da substituição
+                </div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto">2x = 12 + y</span></div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto">(12 + y) + y = 8</span></div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto">2y = −4</span></div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto destaque">y = −2</span></div>
+              </div>
+            </div>
+
+            <!-- Slide 2: Equação do 2º Grau -->
+            <div class="slide-equacao">
+              <div class="equacao-preview-quadro">
+                <div class="equacao-linha-fake equacao" style="width: 70%;"></div>
+                <div class="equacao-linha-fake" style="width: 85%;"></div>
+                <div class="equacao-linha-fake" style="width: 60%;"></div>
+              </div>
+
+              <div class="equacao-resolucao">
+                <p class="resolucao-titulo">Equação do 2º Grau</p>
+                <div class="resolucao-sistema">
+                  <span class="resolucao-eq">x² − 5x + 6 = 0</span>
+                </div>
+                <div class="resolucao-dica">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7-7-7M12 3v18"/>
+                  </svg>
+                  Resolva usando Bhaskara ou Soma e Produto
+                </div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto">Soma = 5, Produto = 6</span></div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto">x' = 2</span></div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto destaque">x'' = 3</span></div>
+              </div>
+            </div>
+
+            <!-- Slide 3: Equação com Parênteses -->
+            <div class="slide-equacao">
+              <div class="equacao-preview-quadro">
+                <div class="equacao-linha-fake equacao" style="width: 55%;"></div>
+                <div class="equacao-linha-fake" style="width: 90%;"></div>
+              </div>
+
+              <div class="equacao-resolucao">
+                <p class="resolucao-titulo">Equação Linear</p>
+                <div class="resolucao-sistema">
+                  <span class="resolucao-eq">3(x + 2) = 15</span>
+                </div>
+                <div class="resolucao-dica">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7-7-7M12 3v18"/>
+                  </svg>
+                  Distribua o 3 antes de isolar o x
+                </div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto">3x + 6 = 15</span></div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto">3x = 15 − 6</span></div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto">3x = 9</span></div>
+                <div class="resolucao-passo"><span class="resolucao-passo-texto destaque">x = 3</span></div>
+              </div>
+            </div>
           </div>
 
-          <!-- Bloco de resolução passo a passo -->
-          <div class="equacao-resolucao" id="equacao-resolucao">
-            <p class="resolucao-titulo">Resolva o sistema de equações matemáticas</p>
+          <!-- Controles do Slideshow -->
+          <div class="controles-slideshow" style="justify-content: flex-end;">
+            <button class="btn-slideshow" id="btn-math-anterior" onclick="mudarSlideMath(-1)" style="display: none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              Anterior
+            </button>
+            
+            <span id="contador-math" style="display: none;">1 de 3</span>
 
-            <div class="resolucao-sistema">
-              <span class="resolucao-eq">2x + y = 8</span>
-              <span class="resolucao-eq">2x − y = 12</span>
-            </div>
-
-            <div class="resolucao-dica">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7-7-7M12 3v18"/>
-              </svg>
-              Resolva usando o método da substituição
-            </div>
-
-            <div class="resolucao-passo">
-              <span class="resolucao-passo-texto">2x = 12 + y</span>
-            </div>
-
-            <div class="resolucao-passo">
-              <span class="resolucao-passo-texto">(12 + y) + y = 8</span>
-            </div>
-
-            <div class="resolucao-passo">
-              <span class="resolucao-passo-texto">2y = 8 − 12</span>
-            </div>
-
-            <div class="resolucao-passo">
-              <span class="resolucao-passo-texto destaque">y = −2</span>
-            </div>
+            <button class="btn-slideshow" id="btn-math-proximo" onclick="mudarSlideMath(1)">
+              Mais exemplos
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
           </div>
 
         </div>

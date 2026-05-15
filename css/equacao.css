@@ -117,11 +117,68 @@
   animation: fadeEntrada 0.5s ease forwards;
 }
 
+/* ── Slideshow de Equações ── */
+.slide-equacao {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeSlide 0.3s ease forwards;
+}
+
+.slide-equacao.ativo {
+  display: flex;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.controles-slideshow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding: 0 5px;
+}
+
+.btn-slideshow {
+  background: #2a2a2a;
+  border: 1px solid #3d3d3d;
+  border-radius: 99px;
+  padding: 8px 14px;
+  color: var(--branco);
+  font-family: var(--fonte);
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-slideshow:active {
+  background: var(--cor-principal);
+  color: #000;
+}
+
+.btn-slideshow svg {
+  width: 16px;
+  height: 16px;
+}
+
+#contador-math {
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+}
+
 /* Baseado na ordem das divs na equacao-resolucao */
-.resolucao-passo:nth-of-type(3) { animation-delay: 0.6s; }
-.resolucao-passo:nth-of-type(4) { animation-delay: 0.9s; }
-.resolucao-passo:nth-of-type(5) { animation-delay: 1.2s; }
-.resolucao-passo:nth-of-type(6) { animation-delay: 1.5s; }
+.slide-equacao.ativo .resolucao-passo:nth-of-type(3) { animation-delay: 0.6s; }
+.slide-equacao.ativo .resolucao-passo:nth-of-type(4) { animation-delay: 0.9s; }
+.slide-equacao.ativo .resolucao-passo:nth-of-type(5) { animation-delay: 1.2s; }
+.slide-equacao.ativo .resolucao-passo:nth-of-type(6) { animation-delay: 1.5s; }
 
 .resolucao-passo-texto {
   font-size: 15px;
