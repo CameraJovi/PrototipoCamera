@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>Protótipo - Câmera Jovi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Câmera Jovi</title>
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/camera.css" />
-  <link rel="stylesheet" href="css/student-mode.css" />
+  <link rel="stylesheet" href="css/modo_estudante.css" />
 </head>
-
 <body>
   <main class="container-celular">
     <div class="tela-celular">
@@ -21,35 +18,28 @@
         <time class="hora-status" id="hora-status"></time>
         <div class="icones-status">
           <svg class="icone-status" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
+            <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
           </svg>
-          <svg class="icone-status bateria" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z" />
+          <svg class="icone-status" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z" />
           </svg>
         </div>
       </header>
 
       <nav class="barra-topo">
         <button class="btn-icone" id="btn-lanterna">
-          <svg id="icone-lanterna-ligada" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+          <svg id="icone-lanterna-ligada" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
           </svg>
-          <svg id="icone-lanterna-desligada" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            stroke-width="1.5" stroke="currentColor" style="display:none">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M11.412 15.655 9.75 21.75l3.745-4.012M9.257 13.5H3.75l2.659-2.849m2.048-2.194L14.25 2.25 12 10.5h8.25l-4.707 5.043M8.457 8.457 3 3m5.457 5.457 7.086 7.086m0 0L21 21" />
+          <svg id="icone-lanterna-desligada" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="display:none">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.412 15.655 9.75 21.75l3.745-4.012M9.257 13.5H3.75l2.659-2.849m2.048-2.194L14.25 2.25 12 10.5h8.25l-4.707 5.043M8.457 8.457 3 3m5.457 5.457 7.086 7.086m0 0L21 21" />
           </svg>
         </button>
 
         <button class="btn-icone" id="btn-configuracoes">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="3" />
-            <path
-              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
           </svg>
         </button>
 
@@ -61,9 +51,7 @@
               <button class="opcao-config" data-group="res" data-val="4K">4K</button>
             </div>
           </div>
-
           <div class="divisor-config"></div>
-
           <div class="linha-config">
             <span class="rotulo-config">FPS</span>
             <div class="opcoes-config">
@@ -98,10 +86,8 @@
           <button class="btn-zoom" data-zoom="5">5</button>
         </div>
 
-        <!-- Badge modo estudante (aparece dentro do visor, no topo) -->
         <div class="estudante-badge-visor" id="estudante-badge-visor">● Modo estudante</div>
 
-        <!-- Cards do modo estudante (no lugar do seletor de zoom) -->
         <div class="estudante-cards" id="estudante-cards">
           <button class="card-estudante" data-acao="scan">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -139,7 +125,6 @@
           </svg>
           Voltar
         </button>
-
       </section>
 
       <footer class="barra-inferior">
@@ -174,108 +159,6 @@
         </div>
       </nav>
 
-      <!-- Tela de Resultado do Scan -->
-      <div class="tela-resultado-scan" id="tela-resultado-scan">
-        <header class="header-resultado">
-          <button class="btn-texto-resultado" id="btn-cancelar-resultado">Cancelar</button>
-          <span class="titulo-resultado">Scan</span>
-          <button class="btn-texto-resultado" id="btn-salvar-resultado">Salvar</button>
-        </header>
-
-        <div class="preview-documento">
-          <div class="linha-texto-fake" style="width: 80%;"></div>
-          <div class="linha-texto-fake" style="width: 90%;"></div>
-          <div class="linha-texto-fake" style="width: 85%;"></div>
-          <div class="linha-texto-fake" style="width: 70%;"></div>
-          <div class="linha-texto-fake" style="width: 85%;"></div>
-          <div class="linha-texto-fake" style="width: 75%;"></div>
-        </div>
-
-        <div class="lista-acoes-resultado">
-          <button class="card-acao-resultado">
-            <div class="icone-acao-resultado">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 7V4h3M17 4h3v3M4 17v3h3M17 20h3v-3"/>
-                <line x1="9" y1="12" x2="15" y2="12"/>
-              </svg>
-            </div>
-            <div class="textos-acao-resultado">
-              <strong>Resumo Inteligente</strong>
-              <span>Gerar resumo com IA</span>
-            </div>
-            <svg class="seta-acao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
-            </svg>
-            <div class="barra-inferior-acao" style="width: 45%;"></div>
-          </button>
-
-          <button class="card-acao-resultado">
-            <div class="icone-acao-resultado">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-              </svg>
-            </div>
-            <div class="textos-acao-resultado">
-              <strong>Criar Flashcards</strong>
-              <span>Cards de estudo automático</span>
-            </div>
-            <svg class="seta-acao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
-            </svg>
-            <div class="barra-inferior-acao" style="width: 45%;"></div>
-          </button>
-
-          <button class="card-acao-resultado">
-            <div class="icone-acao-resultado">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 4H6l6 8-6 8h12"/>
-              </svg>
-            </div>
-            <div class="textos-acao-resultado">
-              <strong>Resolver Equação</strong>
-              <span>Passo a passo da solução</span>
-            </div>
-            <svg class="seta-acao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
-            </svg>
-            <div class="barra-inferior-acao" style="width: 45%;"></div>
-          </button>
-
-          <button class="card-acao-resultado">
-            <div class="icone-acao-resultado">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-              </svg>
-            </div>
-            <div class="textos-acao-resultado">
-              <strong>Salvar em Matéria</strong>
-              <span>Organizar por disciplina</span>
-            </div>
-            <svg class="seta-acao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
-            </svg>
-            <div class="barra-inferior-acao" style="width: 45%;"></div>
-          </button>
-
-          <button class="card-acao-resultado">
-            <div class="icone-acao-resultado">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-              </svg>
-            </div>
-            <div class="textos-acao-resultado">
-              <strong>Compartilhar</strong>
-              <span>Envie para grupo de estudo</span>
-            </div>
-            <svg class="seta-acao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
-            </svg>
-            <div class="barra-inferior-acao" style="width: 45%;"></div>
-          </button>
-        </div>
-      </div>
-
     </div>
   </main>
 
@@ -294,8 +177,7 @@
     <div class="miniatura-contador"></div>
   </template>
 
+  <script src="js/routes.js"></script>
   <script src="js/script.js"></script>
-
 </body>
-
 </html>

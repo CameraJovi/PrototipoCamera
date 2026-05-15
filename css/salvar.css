@@ -1,0 +1,121 @@
+/* ── SALVAR EM MATÉRIA ── */
+.salvar-instrucao {
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.lista-materias {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-materia {
+  background: #242424;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  text-align: left;
+}
+
+.card-materia:active {
+  background: #2e2e2e;
+  border-color: var(--cor-principal);
+}
+
+.card-materia.selecionado {
+  border-color: var(--cor-principal);
+  background: rgba(255, 193, 7, 0.06);
+}
+
+.materia-icone {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 193, 7, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--cor-principal);
+}
+
+.materia-icone svg {
+  width: 20px;
+  height: 20px;
+}
+
+.materia-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.materia-nome {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--branco);
+}
+
+.materia-qtd {
+  font-size: 11px;
+  color: #777;
+}
+
+.materia-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.card-materia.selecionado .materia-check {
+  background: var(--cor-principal);
+  border-color: var(--cor-principal);
+}
+
+.materia-check-inner {
+  display: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1a1a1a;
+}
+
+.card-materia.selecionado .materia-check-inner {
+  display: block;
+}
+
+.btn-salvar-materia {
+  background: var(--cor-principal);
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-family: var(--fonte);
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: opacity 0.2s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.btn-salvar-materia:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
