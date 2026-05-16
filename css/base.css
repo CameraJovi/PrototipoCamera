@@ -6,22 +6,28 @@
   padding: 0;
 }
 
-/* Esconder barra de rolagem, mas manter o scroll */
 ::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;
 }
 * {
-  -ms-overflow-style: none; /* IE e Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
 }
 
+h1, h2, h3 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+/* Variáveis do projeto */
 :root {
   --cor-principal: #FFC107;
   --cor-clara: #FFD54F;
   --brilho-principal: rgba(255, 193, 7, 0.35);
-  --fundo-visor: #332c2c;
+  --fundo-visor: url('../img/math.png');
   --grade-visor: rgba(255, 193, 7, 0.25);
   --cor-leitura: #FFC107;
   --brilho-leitura: rgba(255, 193, 7, 0.5);

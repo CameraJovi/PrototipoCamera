@@ -14,20 +14,16 @@
   <main class="container-celular">
     <div class="tela-celular">
 
+      <!-- Resultado do Scan -->
       <div class="tela-resultado-scan ativa" id="tela-resultado-scan" style="position:relative; transform:none;">
         <header class="header-resultado">
           <button class="btn-texto-resultado" onclick="history.back()">Cancelar</button>
-          <span class="titulo-resultado">Scan</span>
+          <h1 class="titulo-resultado">Scan</h1>
           <button class="btn-texto-resultado" id="btn-salvar-resultado">Salvar</button>
         </header>
 
-        <div class="preview-documento">
-          <div class="linha-texto-fake" style="width: 80%;"></div>
-          <div class="linha-texto-fake" style="width: 90%;"></div>
-          <div class="linha-texto-fake" style="width: 85%;"></div>
-          <div class="linha-texto-fake" style="width: 70%;"></div>
-          <div class="linha-texto-fake" style="width: 85%;"></div>
-          <div class="linha-texto-fake" style="width: 75%;"></div>
+        <div class="preview-documento" style="padding: 0; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+          <img src="../img/math.png" alt="Documento capturado" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
 
         <div class="lista-acoes-resultado">
