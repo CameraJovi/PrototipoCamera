@@ -197,17 +197,34 @@ if (botoesDeModo.length > 0 && visorCamera) {
       this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 
       const modo = this.getAttribute('data-mode');
-
       const btnCapturaInterna = document.querySelector('.captura-interna');
+
+      // Reseta estados específicos de modos
+      visorCamera.style.backgroundImage = '';
+      visorCamera.classList.remove('modo-pro', 'em-leitura');
+      const popupPro = document.getElementById('popup-pro');
+      if (popupPro) popupPro.classList.remove('visivel');
 
       if (modo == 'estudante') {
         visorCamera.className = 'visor-camera modo-estudante';
         if (btnCapturaInterna) btnCapturaInterna.style.background = '';
       } else if (modo == 'video') {
         visorCamera.className = 'visor-camera';
-        if (btnCapturaInterna) btnCapturaInterna.style.background = '#ff3b30'; // Vermelho iOS/Video
+        if (btnCapturaInterna) btnCapturaInterna.style.background = '#ff3b30';
+      } else if (modo == 'pro') {
+        visorCamera.className = 'visor-camera modo-pro em-leitura';
+        visorCamera.style.backgroundImage = "url('img/email.png')";
+        if (btnCapturaInterna) btnCapturaInterna.style.background = '';
+        
+        // Tempo do scan
+        setTimeout(function() {
+          if (visorCamera.classList.contains('modo-pro')) {
+            visorCamera.classList.remove('em-leitura');
+            if (popupPro) popupPro.classList.add('visivel');
+          }
+        }, 4000);
       } else {
-        // Foto, Retrato, Pro
+        // Foto, Retrato
         visorCamera.className = 'visor-camera';
         if (btnCapturaInterna) btnCapturaInterna.style.background = '';
       }
