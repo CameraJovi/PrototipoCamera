@@ -299,7 +299,7 @@ function virarFlashcard(btn) {
   }
 }
 
-// Slideshow de Matemática
+// Carrossel Matemática
 let slideMathAtual = 0;
 function mudarSlideMath(direcao) {
   const slides = document.querySelectorAll('.slide-equacao');
@@ -395,3 +395,143 @@ const modoAtivo = document.querySelector('.botao-modo.active');
 if (modoAtivo) {
   modoAtivo.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
 }
+
+// Login para Galeria
+const telaLogin = document.getElementById('tela-login');
+const formLogin = document.getElementById('form-login');
+const btnCancelarLogin = document.getElementById('btn-cancelar-login');
+
+if (miniaturaPreview && telaLogin) {
+  miniaturaPreview.onclick = function () {
+    telaLogin.classList.add('ativa');
+  };
+}
+
+if (btnCancelarLogin) {
+  btnCancelarLogin.onclick = function () {
+    telaLogin.classList.remove('ativa');
+  };
+}
+
+if (formLogin) {
+  formLogin.onsubmit = function (e) {
+    e.preventDefault();
+    const user = document.getElementById('usuario').value;
+    const pass = document.getElementById('senha').value;
+
+    // Validação simples
+    if (user === 'admin' && pass === '1234') {
+      mostrarAlerta('ACESSO LIBERADO!');
+      setTimeout(function () {
+        telaLogin.classList.remove('ativa');
+        abrirGaleria();
+      }, 1000);
+    } else {
+      mostrarAlerta('USUÁRIO OU SENHA INCORRETOS');
+
+      const container = document.querySelector('.login-container');
+      container.style.animation = 'none';
+      void container.offsetWidth;
+      container.style.animation = 'alerta-erro 0.4s ease-in-out';
+
+      document.getElementById('senha').value = '';
+      document.getElementById('usuario').focus();
+    }
+  };
+}
+
+// Galeria
+const telaGaleria = document.getElementById('tela-galeria');
+const galeriaWrapper = document.getElementById('galeria-wrapper');
+const galeriaPrev = document.getElementById('galeria-prev');
+const galeriaNext = document.getElementById('galeria-next');
+const galeriaIndicadores = document.getElementById('galeria-indicadores');
+const btnFecharGaleria = document.getElementById('btn-fechar-galeria');
+
+const fotosGaleria = ['img/math.png', 'img/email.png']; // Imagens da pasta img
+let slideAtual = 0;
+
+function abrirGaleria() {
+  gerarSlides();
+  telaGaleria.classList.add('ativa');
+  atualizarSlide();
+}
+
+function gerarSlides() {
+  if (galeriaWrapper.children.length > 0) return;
+
+  galeriaWrapper.innerHTML = '';
+  galeriaIndicadores.innerHTML = '';
+  for (let i = 0; i < fotosGaleria.length; i++) {
+    let foto = fotosGaleria[i];
+
+    // Criar Slide
+    const slide = document.createElement('div');
+    slide.className = 'galeria-slide';
+    slide.innerHTML = '<img src="' + foto + '" alt="Foto ' + (i + 1) + '">';
+    galeriaWrapper.appendChild(slide);
+
+    // Criar Indicador
+    const ponto = document.createElement('div');
+    ponto.className = 'ponto-indicador';
+    if (i === 0) {
+      ponto.classList.add('ativo');
+    }
+    galeriaIndicadores.appendChild(ponto);
+  }
+}
+
+function atualizarSlide() {
+  galeriaWrapper.style.transform = 'translateX(-' + (slideAtual * 100) + '%)';
+  // Atualizar pontos
+  const pontos = document.querySelectorAll('.ponto-indicador');
+  for (let j = 0; j < pontos.length; j++) {
+    let ponto = pontos[j];
+    if (j === slideAtual) {
+      ponto.classList.add('ativo');
+    } else {
+      ponto.classList.remove('ativo');
+    }
+  }
+}
+
+if (galeriaPrev) {
+  galeriaPrev.onclick = () => {
+    slideAtual = (slideAtual > 0) ? slideAtual - 1 : fotosGaleria.length - 1;
+    atualizarSlide();
+  };
+}
+
+if (galeriaNext) {
+  galeriaNext.onclick = () => {
+    slideAtual = (slideAtual < fotosGaleria.length - 1) ? slideAtual + 1 : 0;
+    atualizarSlide();
+  };
+}
+
+if (btnFecharGaleria) {
+  btnFecharGaleria.onclick = () => {
+    telaGaleria.classList.remove('ativa');
+    slideAtual = 0;
+  };
+}
+
+// Gestos
+let touchStartX = 0;
+telaGaleria.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+telaGaleria.addEventListener('touchend', e => {
+  let touchEndX = e.changedTouches[0].screenX;
+  if (touchStartX - touchEndX > 50) galeriaNext.click();
+  if (touchEndX - touchStartX > 50) galeriaPrev.click();
+});
+
+// Adiciona animação de erro ao CSS (via JS para simplificar este bloco)
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes alerta-erro {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+`;
+document.head.appendChild(style);
